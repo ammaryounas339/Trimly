@@ -1,0 +1,1 @@
+web: gunicorn Trimly.wsgi –log-file -

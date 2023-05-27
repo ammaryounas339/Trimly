@@ -1,0 +1,107 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TrimLy</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" 
+        integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    
+    <link rel="stylesheet" href="{% static 'main\stylesheet.css' %}">
+    <!-- <link href="stylesheet.css" rel="stylesheet"> -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Poppins:wght@500&display=swap" rel="stylesheet">
+    </head>
+<body>
+    <header>
+        <div class="container center">
+            <div class="p-3">
+                <a href="#" class="navbar-brand mx-1" style="font-size: 35px; font-weight: bolder;">TrimLy<span id="period">.</span></a>
+            </div>
+        </div>
+    </header>
+    
+    <main class="main container-fluid ml-4">
+        <div class="container">
+            <div class="row p-5">
+                <div class="col-md-6 d-flex flex-column">
+                    <div class="p-2" id="pre-h1">URL Shortener</div>
+                    <div class="p-2" id="h1"><span style="font-weight: bold;">Shorten</span> <i>your links,</i> <span style="font-weight: bold;">lengthen</span> <i>your possibilities</i></div>
+                    <div class="p-2" id="h1-para">Shorten, customize, and track your links with ease using our URL shortener platform. 
+                        With branding options and a link in bio feature, it's the perfect tool for optimizing online marketing. 
+                        Organize all your links in one place and see how they're performing. Try it out today and take control of your links!</div>
+                </div>
+                <div class="col-md-6 icon">
+                    <svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewbox="0 0 100 100" xml:space="preserve"><path fill="none" 
+                        stroke="white" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" 
+                        stroke-miterlimit="10" d="M50 33.999a8 8 0 0 1 8.001-8h22v-8.5c0-4.125-3.375-7.499-7.5-7.499H17.5c-4.124 
+                        0-7.5 3.374-7.5 7.499v45.002c0 4.125 3.376 7.5 7.5 7.5H50V33.999z"/><path fill="none" stroke="white" stroke-width="1" 
+                        stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M50 74.001c0 2.207 1.792 4 4.001 4H86a4 4 0 0 0 4-4.002V37.998a4 4 0 0 0-4-3.999H54a4 
+                        4 0 0 0-4 3.999v36.003zM67.002 83.999H73h-5.998z"/><path fill="none" stroke="white" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" 
+                        stroke-miterlimit="10" d="M86 78.001H54.002a4.001 4.001 0 0 1-4.001-3.996v7.992A8 8 0 0 0 58.002 90L82 89.996c4.42 0 8-3.576 8-7.993v-8.004a4 4 0 0 1-4 
+                        4.002zM82.002 25.999h-24a8 8 0 0 0-8.001 8v3.999a4 4 0 0 1 4-3.999h32a4 4 0 0 1 4 3.999v-3.999a8 8 0 0 0-7.999-8z"/></svg>
+                </div>
+            </div>
+            <!-- <div class="row p-3 center"> -->
+                <!-- <div class="col-md-12" style="font-size: 27px;">
+                    <form action="/action_page.php">
+                        <input class="text-field" type="text" id="link" name="link" placeholder="Paste url to shorten">
+                        <input class="btn" type="submit" value="Shorten">
+                      </form> 
+                </div> -->
+                <div class="d-flex justify-content-center mb-4 div-short-url">
+                    
+                    <form action="/" method="POST" class="form">
+                        {% csrf_token %}
+                        <div class="form-outline me-3 p-1" style="width: 35rem">
+                            <input type="text" id="url" name="url" class="form-control" placeholder="Paste url to shorten"/>
+                        </div>
+                        <!-- <button type="button" class="btn">Button</button> -->
+                        <input class="btn submit" type="submit" value="Shorten">
+                    </form>
+                </div>
+            <!-- </div> -->
+            <div class="row p-1 center">
+                <div class="d-flex justify-content-center mb-4" style="font-size: 18px;">
+                    {% if hidden == False%}
+                    <div id="shortened-url">{{ shortened }}</div>    
+                    <button type="button" onclick="copyDivToClipboard()" class="btn" id="copy-btn">Copy</button>
+                    {% endif %}                    
+                </div>
+            </div>
+
+
+            <div class="row p-1 center">
+                <div class="d-flex justify-content-center mb-4" style="font-size: 18px;">
+                    {% if hidden_error == False%}
+                    <div id="shortened-url">Please enter a valid URL</div>
+                    {% endif %}
+                </div>
+            </div>
+
+
+            
+            <div class="row p-4 center">
+                <p>By using our service you accept the Terms of service and Privacy Policy. </p>
+            </div>
+        </div>    
+    </main>
+
+    <footer>
+        <div class="center p-3">
+            <p><span>&copy</span> 2023 trim.ly | Made by AHAM</p>
+            <p>All rights reserved</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript Bundle with Popper -->
+    <script src="{% static 'main\script.js' %}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" 
+    integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+
+</body>
+</html>

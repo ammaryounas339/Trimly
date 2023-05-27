@@ -1,0 +1,71 @@
+body{
+    margin: 0;
+    padding: 0;
+    /* font-family: 'Open Sans', sans-serif; */
+    font-family: 'Poppins', sans-serif;
+}
+.form{
+    align-content: center;
+}
+header{
+    color: linear-gradient(160deg, rgba(2,0,36,1) 45%, rgba(20,28,61,1) 64%, rgba(109,112,134,1) 100%); 
+}
+.container-fluid{
+    background-color: #EEEEEE;
+}
+.btn{
+    padding: 5px;
+    padding-left: 15px;
+    padding-right: 15px;
+    border-radius: 25px;
+    background-color: white;
+    color: black;
+    border-width: 3px;
+}
+#shortened-url{
+    padding-top: 8px;
+}
+#copy-btn{
+    margin-left: 13px;
+}
+.submit{
+    margin-left: 220px;
+    margin-top: 10px;
+}
+.btn:hover{
+    border-color: white;
+    color: white;
+}
+#period{
+    color: #141c3d ;
+}
+.main{
+    /* background-color:  #141c3d ; */
+    background: rgb(2,0,36);
+    background: linear-gradient(160deg, rgba(2,0,36,1) 45%, rgba(20,28,61,1) 64%, rgba(109,112,134,1) 100%); 
+    color: white;
+}
+footer{
+    color:  #6d7086 ;
+}
+svg {
+    width: 450px;
+    height: 450px;
+}
+#h1{
+    font-size: 45px
+}
+.center{
+    text-align: center;
+}
+.text-field{
+    padding-left: 10px;
+    border-radius: 10px;
+}
+::placeholder {
+    font-weight: 0.5;
+}
+svg{
+    display: block;
+    margin: auto;
+}
